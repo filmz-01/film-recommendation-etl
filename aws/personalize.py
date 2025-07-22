@@ -100,9 +100,9 @@ def create_interactions_dataset_impot_job():
 
 def setup_personalize(account_id: str, region: str):
 
-    cresate_users_dataset_impot_job(account_id, region)
-    create_items_dataset_impot_job(account_id, region)
-    create_interactions_dataset_impot_job(account_id, region)
+    cresate_users_dataset_impot_job()
+    create_items_dataset_impot_job()
+    create_interactions_dataset_impot_job()
 
     solution_name = "fimz-recommendation-solution"
 
