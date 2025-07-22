@@ -2,19 +2,20 @@ import boto3
 import time
 import nanoid
 
-BUCKET_NAME = "filmz-ml-data"
+BUCKET_NAME = "filmz-ml-data-1"
 
 
 def cresate_users_dataset_impot_job(account_id: str, region: str):
-    roleArn = f"arn:aws:iam::{account_id}:role/service-role/AmazonPersonalize-ExecutionRole-1743384123100"
+    roleArn = f"arn:aws:iam::857483394667:role/service-role/AmazonPersonalize-ExecutionRole-1753200670662"
     """
     Create a personalize dataset import job for users
     """
     personalize = boto3.client("personalize")
 
+
     # Create a dataset import job
     response = personalize.create_dataset_import_job(
-        datasetArn=f"arn:aws:personalize:{region}:{account_id}:dataset/fimz-recommendation-dataset/USERS",
+        datasetArn=f"arn:aws:personalize:us-west-2:857483394667:dataset/fimz-recommendation-dataset-group/USERS",
         dataSource={
             "dataLocation": f"s3://{BUCKET_NAME}/users.csv"
         },
@@ -39,13 +40,13 @@ def create_items_dataset_impot_job(account_id: str, region: str):
     """
     Create a personalize dataset import job for items
     """
-    roleArn = f"arn:aws:iam::{account_id}:role/service-role/AmazonPersonalize-ExecutionRole-1743384123100"
+    roleArn = f"arn:aws:iam::857483394667:role/service-role/AmazonPersonalize-ExecutionRole-1753200670662"
 
     personalize = boto3.client("personalize")
 
     # Create a dataset import job
     response = personalize.create_dataset_import_job(
-        datasetArn=f"arn:aws:personalize:{region}:{account_id}:dataset/fimz-recommendation-dataset/ITEMS",
+        datasetArn=f"arn:aws:personalize:us-west-2:857483394667:dataset/fimz-recommendation-dataset-group/ITEMS",
         dataSource={
             "dataLocation": f"s3://{BUCKET_NAME}/items.csv"
         },
@@ -70,13 +71,13 @@ def create_interactions_dataset_impot_job(account_id: str, region: str):
     """
     Create a personalize dataset import job for interactions
     """
-    roleArn = f"arn:aws:iam::{account_id}:role/service-role/AmazonPersonalize-ExecutionRole-1743384123100"
+    roleArn = f"arn:aws:iam::857483394667:role/service-role/AmazonPersonalize-ExecutionRole-1753200670662"
 
     personalize = boto3.client("personalize")
 
     # Create a dataset import job
     response = personalize.create_dataset_import_job(
-        datasetArn=f"arn:aws:personalize:{region}:{account_id}:dataset/fimz-recommendation-dataset/INTERACTIONS",
+        datasetArn=f"arn:aws:personalize:us-west-2:857483394667:dataset/fimz-recommendation-dataset-group/INTERACTIONS",
         dataSource={
             "dataLocation": f"s3://{BUCKET_NAME}/interactions.csv"
         },

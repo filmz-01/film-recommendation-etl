@@ -37,7 +37,7 @@ def transform_users_data(users: list[dict]) -> list[dict]:
         user["LAST_NAME"] = user.pop("lastname")
     return 
 
-def generate_interaction_data(num_interactions=1000):
+def generate_interaction_data(num_interactions=3000):
     interactions = []
     current_time = int(time.time())
 
@@ -50,6 +50,19 @@ def generate_interaction_data(num_interactions=1000):
         interactions.append(interaction)
 
     return interactions
+
+def generate_fake_users(num_users=25):
+    users = []
+    for i in range(1, num_users + 1):
+        user = {
+            'id': i,
+            'firstname': f'FirstName{i}',
+            'lastname': f'LastName{i}',
+            "createdAt": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "updatedAt": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        }
+        users.append(user)
+    return users
 
 def transform_interactions_data(interactions: list[dict]) -> list[dict]:
     """
@@ -87,7 +100,8 @@ def transform_data(
     os.system("rm -rf tmp/items.csv")
     os.system("rm -rf tmp/interactions.csv")
     
-    users_df = pd.DataFrame(transform_users_data(users))
+    user_data = users + generate_fake_users()
+    users_df = pd.DataFrame(transform_users_data(user_data))
     users_df.to_csv("tmp/users.csv", index=False)
 
     items_df = pd.DataFrame(transform_items_data(items))

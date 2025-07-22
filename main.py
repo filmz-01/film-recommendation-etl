@@ -9,9 +9,8 @@ import os
 
 
 AWS_ACCOUNT_ID = boto3.client("sts").get_caller_identity().get("Account")
-AWS_REGION = os.environ.get("AWS_REGION") or "us-east-1"
+AWS_REGION = os.environ.get("AWS_REGION") or "us-west-2"
 DATABASE_CONNECTION_STRING = os.environ.get("DATABASE_CONNECTION_STRING")
-
 logging.basicConfig(level=logging.INFO)
 
 def start_training():

@@ -5,7 +5,7 @@ def get_or_create_s3_bucket()-> dict:
     Create an S3 bucket
     return bucket ARN
     """
-    bucket_name = "filmz-ml-data"
+    bucket_name = "filmz-ml-data-1"
     s3 = boto3.client("s3")    
     # Check if the bucket exists
     s3.head_bucket(Bucket=bucket_name)

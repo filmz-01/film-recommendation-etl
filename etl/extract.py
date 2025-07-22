@@ -1,10 +1,11 @@
 import logging.config
 import psycopg
 import logging
+import os
 
 logging.basicConfig(level=logging.INFO)
 
-DATABASE_CONNECTION_STRING = "postgres://postgres:Filmzdbpass$@filmz-db.c49gimqecoz4.us-east-1.rds.amazonaws.com:5432/appdb"
+DATABASE_CONNECTION_STRING = os.environ.get("DATABASE_CONNECTION_STRING", "postgresql://user:password@localhost:5432/mydatabase")
 
 def fetch_users() -> list[dict]:
     logging.info("Fetching users from the database")
