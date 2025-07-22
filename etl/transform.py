@@ -35,15 +35,15 @@ def transform_users_data(users: list[dict]) -> list[dict]:
         user["AGE"] = int(user.pop("id"))
         user["FIRST_NAME"] = user.pop("firstname")
         user["LAST_NAME"] = user.pop("lastname")
-    return 
+    return users
 
-def generate_interaction_data(num_interactions=3000):
+def generate_interaction_data(num_interactions=6000):
     interactions = []
     current_time = int(time.time())
 
     for _ in range(num_interactions):
         interaction = {
-            'USER_ID': random.randint(1, 25),
+            'USER_ID': random.randint(1, 200),
             'ITEM_ID': random.randint(1, 2000),
             'TIMESTAMP': current_time - random.randint(0, 31536000)  # up to one year ago
         }
@@ -51,7 +51,7 @@ def generate_interaction_data(num_interactions=3000):
 
     return interactions
 
-def generate_fake_users(num_users=25):
+def generate_fake_users(num_users=1000):
     users = []
     for i in range(1, num_users + 1):
         user = {

@@ -5,7 +5,7 @@ import nanoid
 BUCKET_NAME = "filmz-ml-data-1"
 
 
-def cresate_users_dataset_impot_job(account_id: str, region: str):
+def cresate_users_dataset_impot_job():
     roleArn = f"arn:aws:iam::857483394667:role/service-role/AmazonPersonalize-ExecutionRole-1753200670662"
     """
     Create a personalize dataset import job for users
@@ -36,7 +36,7 @@ def cresate_users_dataset_impot_job(account_id: str, region: str):
     return response
 
 
-def create_items_dataset_impot_job(account_id: str, region: str):
+def create_items_dataset_impot_job():
     """
     Create a personalize dataset import job for items
     """
@@ -67,7 +67,7 @@ def create_items_dataset_impot_job(account_id: str, region: str):
     return response
 
 
-def create_interactions_dataset_impot_job(account_id: str, region: str):
+def create_interactions_dataset_impot_job():
     """
     Create a personalize dataset import job for interactions
     """
@@ -104,7 +104,7 @@ def setup_personalize(account_id: str, region: str):
     create_items_dataset_impot_job(account_id, region)
     create_interactions_dataset_impot_job(account_id, region)
 
-    solution_name = "filmz-recommendation-solution-2"
+    solution_name = "fimz-recommendation-solution"
 
     personalize = boto3.client("personalize")
 
@@ -129,7 +129,6 @@ def setup_personalize(account_id: str, region: str):
         time.sleep(60)
 
     solution_version_arn = response["solutionVersionArn"]
-    campain_name = "film-campain"
 
     # Delete the existing campaign
     # Create a campaign
